@@ -1,0 +1,208 @@
+{
+  "typeId": "8.2",
+  "name": "Telnet",
+  "title": "Telnet",
+  "category": "fileSystem",
+  "type": "object",
+  "required": [
+    "name",
+    "coordinates",
+    "settings",
+    "process",
+    "output"
+  ],
+  "properties": {
+    "name": {
+      "description": "Name Of the Module",
+      "title": "Module name",
+      "type": "string",
+      "minLength": 1
+    },
+    "coordinates": {
+      "description": "Coordinates Of the Module",
+      "title": "Coordinates",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Coordinate ID",
+          "title": "Coordinate ID",
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "description": "Coordinate type",
+          "title": "Coordinate Type",
+          "type": "string",
+          "minLength": 1
+        },
+        "ports": {
+          "description": "Coordinate ports",
+          "title": "Coordinate ports",
+          "type": "array",
+          "minItems": 1
+        },
+        "nodedata": {
+          "description": "Node data",
+          "title": "Node data",
+          "type": "object",
+          "properties": {
+            "title": {
+              "description": "The title of node",
+              "title": "Module title",
+              "type": "string"
+            },
+            "name": {
+              "description": "The name of node",
+              "title": "Module Name",
+              "type": "string"
+            },
+            "id": {
+              "description": "The Id of node",
+              "title": "Module ID",
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "settings": {
+      "description": "Setting properties Of the Module",
+      "title": "Settings",
+      "type": "object",
+      "required": [
+        "host",
+        "port",
+        "username",
+        "password"
+      ],
+      "properties": {
+        "host": {
+          "description": "The hostname of the database",
+          "title": "Host",
+          "default": "172.25.25.103",
+          "type": "string",
+          "format": "ipv4"
+        },
+        "port": {
+          "description": "The port number of the database",
+          "title": "Port",
+          "default": 23,
+          "type": "integer",
+          "minimum": 20,
+          "maximum": 65535
+        },
+        "username": {
+          "description": "Username used to login. Defaults to 'leap'",
+          "title": "User Name",
+          "type": "string",
+          "minLength": 1
+        },
+        "password": {
+          "description": "Password used to login. Defaults to 'leap123'",
+          "title": "Password",
+          "hint": "password",
+          "type": "string",
+          "minLength": 1
+        },
+        "loginPrompt": {
+          "description": "Username/login prompt that the host is using. Can be a string or an instance of RegExp. Defaults to regex '/login[: ]*$/i",
+          "title": "login prompt screen",
+          "default": "leap-jenkins-server login:",
+          "hint": "login prompt screen",
+          "type": "string",
+          "minLength": 1
+        },
+        "passwordPrompt": {
+          "description": "Password/login prompt that the host is using. Can be a string or an instance of RegExp. Defaults to regex '/Password: /i",
+          "title": "password prompt screen",
+          "default": "Password:",
+          "hint": "password prompt screen",
+          "type": "string",
+          "minLength": 1
+        },
+        "shellPrompt": {
+          "description": "Shell prompt that the host is using. Can be a string or an instance of RegExp. Defaults to [leap@leap-jenkins-server ~]$",
+          "title": "shell prompt screen",
+          "default": "[leap@leap-jenkins-server ~]$",
+          "hint": "shell prompt screen",
+          "type": "string",
+          "minLength": 1
+        },
+        "EMATelnetPromptScreen": {
+          "description": "Shell prompt that the host is using. Can be a string or an instance of RegExp. Defaults to Enter Command:",
+          "title": "EMA telnet shell prompt screen",
+          "default": "Enter Command:",
+          "hint": "shell prompt screen for EMA telnet",
+          "type": "string",
+          "minLength": 1
+        },
+        "timeout": {
+          "description": "No. of milliseconds before a timeout occurs during the initial connection to the Telnet server",
+          "title": "Connection TimeOut(ms)",
+          "default": 10000,
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 99999999
+        },
+        "maxRetry": {
+          "description": "The Max number of retries to connect to the SMSC",
+          "title": "maxRetry",
+          "default": 1,
+          "type": "integer"
+        },
+        "retryInterval": {
+          "description": "The time interval betwwen retries to connect to the SMSC in millis",
+          "title": "retryInterval",
+          "default": 3000,
+          "type": "integer"
+        }
+      }
+    },
+    "input": {
+      "description": "Input parameters",
+      "title": "Input",
+      "type": "object"
+    },
+    "process": {
+      "description": "Setting properties Of the Module",
+      "title": "Process",
+      "type": "object",
+      "properties": {
+        "command": {
+          "description": "Telnet Commands Editor",
+          "title": "Telnet Commands Editor",
+          "type": "string",
+          "hint": "telnetCommandEditor",
+          "minLength": 1
+        }
+      }
+    },
+    "response": {
+      "title": "Response",
+      "description": "Plugin response",
+      "type": "object",
+      "properties": {
+        "responseCode": {
+          "description": "parameter is sent back after a message has been processed and indicates success or failure of the message ",
+          "title": "Response Code",
+          "type": "string"
+        },
+        "resultsets": {
+          "description": "Resultsets of Query",
+          "title": "Resultsets of Query",
+          "type": "object",
+          "properties": {
+            "rows": {
+              "title": "result rows",
+              "type": "array"
+            }
+          }
+        }
+      }
+    },
+    "output": {
+      "description": "The output params",
+      "type": "object"
+    }
+  }
+}
